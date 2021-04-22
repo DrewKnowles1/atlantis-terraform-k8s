@@ -9,7 +9,7 @@ terraform {
 
 provider "google" {
 
-  credentials = file("/home/aknow/tf/clean-patrol-311410-0a2251d78e02.json")
+ #credentials = file("/home/aknow/tf/clean-patrol-311410-0a2251d78e02.json")
 
   project = "clean-patrol-311410"
   region  = "europe-west2"
