@@ -13,7 +13,7 @@ provider "google" {
 
   project = "clean-patrol-311410"
   region  = "eu-west1"
-  zone    = "eu-west1-b"
+  zone    = "eu-west1-c"
 }
 
 resource "google_compute_network" "vpc_network" {
