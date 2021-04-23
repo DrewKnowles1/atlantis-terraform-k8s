@@ -5,9 +5,20 @@ provider "google-beta" {
   zone    = var.zone
 }
 
+provider "google" {
+
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
+}
+
+resource "google_service_account" "service_account" {
+  account_id   = "terraform-atlantis"
+  display_name = "Terrafrom Atlantis"
+}
+
 resource "google_compute_network" "vpc_network" {
   name = "engineering-playground-network"
-  project = var.project_id
 }
 
 resource "google_container_cluster" "engineering_playground_cluster" {
