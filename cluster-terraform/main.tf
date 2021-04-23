@@ -1,12 +1,3 @@
-terraform {   
-  # required_providers {
-  #   google-beta = {
-  #     source = "hashicorp/google-beta"
-  #     version = "3.5.0"
-  #   }
-  # }
-}
-
 provider "google-beta" {
 
   project = var.project_id
@@ -16,6 +7,7 @@ provider "google-beta" {
 
 resource "google_compute_network" "vpc_network" {
   name = "engineering-playground-network"
+  project = var.project_id
 }
 
 resource "google_container_cluster" "engineering_playground_cluster" {

@@ -1,6 +1,6 @@
 variable "project_id" {
   type = string
-  default = "clean-patrol-311410"
+  default = "engineering-playground-311410"
 }
 
 variable "region" {
