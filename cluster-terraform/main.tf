@@ -1,17 +1,20 @@
-terraform {   
-  # required_providers {
-  #   google-beta = {
-  #     source = "hashicorp/google-beta"
-  #     version = "3.5.0"
-  #   }
-  # }
-}
-
 provider "google-beta" {
 
   project = var.project_id
   region  = var.region
   zone    = var.zone
+}
+
+provider "google" {
+
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
+}
+
+resource "google_service_account" "service_account" {
+  account_id   = "terraform-atlantis"
+  display_name = "Terrafrom Atlantis"
 }
 
 resource "google_compute_network" "vpc_network" {

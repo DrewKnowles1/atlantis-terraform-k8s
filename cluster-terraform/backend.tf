@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket  = "atlantis-tf-state-dev-cp"
-    prefix  = "terraform/state"
+    bucket  = "atlantis-engineering-playground-tf-state"
+    prefix  = "terraform/engineering-playground/state"
   }
 }
 
