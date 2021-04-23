@@ -9,9 +9,9 @@ terraform {
 
 provider "google-beta" {
 
-  project = "clean-patrol-311410"
-  region  = "europe-west2"
-  zone    = "europe-west2-b"
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -21,7 +21,7 @@ resource "google_compute_network" "vpc_network" {
 resource "google_container_cluster" "engineering_playground_cluster" {
   provider = google-beta
   name               = "engineering-playground-cluster"
-  location           = "europe-west2"
+  location           = var.region
   remove_default_node_pool = true
   initial_node_count = 1
 
@@ -30,7 +30,7 @@ resource "google_container_cluster" "engineering_playground_cluster" {
   
   # Enable Workload Identity
   workload_identity_config {
-    identity_namespace = "clean-patrol-311410.svc.id.goog"
+    identity_namespace = "${var.project_id}.svc.id.goog"
   }
 
 
@@ -46,14 +46,14 @@ resource "google_container_cluster" "engineering_playground_cluster" {
 resource "google_container_node_pool" "primary_preemptible_nodes" {
   provider = google-beta
   name       = "engineering-playground-cluster-nodepool"
-  location   = "europe-west2"
+  location   = var.region
   cluster    = google_container_cluster.engineering_playground_cluster.name
   node_count = 1
   
   node_config {
     ##Trying to save some pennies
     preemptible  = true
-    machine_type = "n2d-standard-2"
+    machine_type = var.machine_type
     
 
     workload_metadata_config {
