@@ -54,7 +54,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_count = 1
   
   node_config {
-    ##Trying to save some pennies
+    #Trying to save some pennies
     preemptible  = true
     machine_type = var.machine_type
     
